@@ -16,10 +16,10 @@ class UserPrime extends User{
     }
 
     public function setScount(){
-        $this -> scount = 50;
+        $this -> scount = "50%";
     }
     public function setShippingcost(){
-        $this -> shippingcost = "spedizioni gratis";
+        $this -> shippingCost = "spedizioni gratis";
     }
 
     

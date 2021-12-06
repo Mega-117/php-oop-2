@@ -18,8 +18,11 @@ class User{
     protected $defaultPayment = "Pagamento non definito";
 
     public $cart = [];
-    public $scount = 0;
-    public $shippingcost = 10;
+    public $scount = "0%";
+    public $shippingCost = "10 Euro";
+    public $pippo = "pippo";
+
+
     
     function __construct($_firstName, $_lastName) {
               
@@ -58,11 +61,7 @@ class User{
     public function addPaymentMethods($newPaymentMethods){
         $this->paymentMethods[] = $newPaymentMethods;
     }
-    public function getCart(){
-        return $this->cart;
-
-    }
-
+    
     public function addToCart($ProductToAdd){
         $this->cart[] = $ProductToAdd;
     }
@@ -73,6 +72,9 @@ class User{
     public function getFullName(){
         return $this->fullName;
     }
+    public function adress(){
+        return $this->adress;
+    }
     public function getUserType(){
         return $this->userType;
     }
@@ -81,6 +83,18 @@ class User{
     }
     public function getPaymentMethods(){
         return $this->paymentMethods;
+    }
+    public function getPippo(){
+        return $this->pippo;
+    }
+    public function getCart(){
+        return $this->cart;
+    }
+    public function getScount(){
+        return $this->scount;
+    }
+    public function getShippingCost(){
+        return $this->shippingCost;
     }
    
     
@@ -93,4 +107,3 @@ class User{
 
 var_dump($productList[2]);
  */
-
