@@ -8,12 +8,13 @@
 
 <?php
 include "classes/ProductList.php";
+require_once __DIR__ . "/../traits/TextFormatter.php";
 class User{
     protected $fullName = "";
     public $firstName = "";
     protected $lastName = "";
     protected $adress = "";
-    protected $userType = "";
+    protected $userType = "Normal";
     protected $paymentMethods = [];
     protected $defaultPayment = "Pagamento non definito";
 
@@ -23,11 +24,19 @@ class User{
     public $pippo = "pippo";
 
 
+    use Formatter;
     
     function __construct($_firstName, $_lastName) {
-              
-        $this->setFistName($_firstName);
-        $this->setLastName($_lastName);
+        try{
+            $this->setFistName($_firstName);
+        } catch (Exception $e){
+            echo "Errore: " . $e->getMessage();
+        }
+        try{
+            $this->setLastName($_lastName);
+        } catch (Exception $e){
+            echo "Errore: " . $e->getMessage();
+        }
       }
     
     
@@ -39,10 +48,23 @@ class User{
     }
     
     public function setFistName($newName){
-        $this->firstName = $newName;
+        if(strlen($newName)<3){
+            throw new Exception("Nome troppo corto");
+        }
+        else if(strlen($newName)>10){
+            throw new Exception("Nome troppo lungo");
+        } else {
+            $this->firstName = $this->uperCaseFirst($newName);
+        }
     }
     public function setLastName($newlastName){
-        $this->lastName = $newlastName;
+        $this->lastName = $this->uperCaseFirst($newlastName);
+        if(strlen($newlastName)<3){
+            throw new Exception("Cognome troppo corto");
+        }
+        if(strlen($newlastName)>10){
+            throw new Exception("Cognome troppo lungo");
+        }
     }
     public function setAdress($newAdress){
         $this->adress = $newAdress;
